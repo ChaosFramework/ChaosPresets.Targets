@@ -7,7 +7,7 @@
       Do not use outside of this ProjectReference.targets file.
       -->
     <ProjRefRegex_ProjectTypeGuid>FAE04EC0-301F-11D3-BF4B-00C04F79EFBC</ProjRefRegex_ProjectTypeGuid>
-    <ProjRefRegex_LookBehindValue>Project\("{$(ProjRefRegex_ProjectTypeGuid)}"\)\s=\s"[a-zA-Z0-9\\.]+",\s"</ProjRefRegex_LookBehindValue>
+    <ProjRefRegex_LookBehindValue>Project\("\{$(ProjRefRegex_ProjectTypeGuid)\}"\)\s=\s"[a-zA-Z0-9\.]+",\s"</ProjRefRegex_LookBehindValue>
     <ProjRefRegex_LookBehind>(?&lt;=$(ProjRefRegex_LookBehindValue))</ProjRefRegex_LookBehind>
     <ProjRefRegex_Path>[a-zA-Z0-9/\\\. -]+\.csproj</ProjRefRegex_Path>
     <ProjRefRegex_LookAheadPrefix>(?=",\s"\{</ProjRefRegex_LookAheadPrefix>
