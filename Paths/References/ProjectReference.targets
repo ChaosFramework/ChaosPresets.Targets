@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+
+    <!--
+      Helper properties to improve readability and maintainability.
+      Do not use outside of this ProjectReference.targets file.
+      -->
+    <ProjRefRegex_ProjectTypeGuid>FAE04EC0-301F-11D3-BF4B-00C04F79EFBC</ProjRefRegex_ProjectTypeGuid>
+    <ProjRefRegex_LookBehindValue>Project\("{$(ProjRefRegex_ProjectTypeGuid)}"\)\s=\s"[a-zA-Z0-9\\.]+",\s"</ProjRefRegex_LookBehindValue>
+    <ProjRefRegex_LookBehind>(?&lt;=$(ProjRefRegex_LookBehindValue))</ProjRefRegex_LookBehind>
+    <ProjRefRegex_PATH>[a-zA-Z0-9/\\\. -]+\.csproj</ProjRefRegex_PATH>
+    <ProjRefRegex_LookAheadPrefix>(?=",\s"\{</ProjRefRegex_LookAheadPrefix>
+
+    <!--
+      The prefix and suffix for the regex to fetch the project path from the solution file.
+      Use like $(ReferencePathFromGuidPrefix)PROJECT_GUID$(ReferencePathFromGuidSuffix)
+      where PROJECT_GUID is the guid of the project to be imported in 8-4-4-4-12 notation
+      with all upper case letters and without braces.
+      -->
+    <ReferencePathFromGuidPrefix>$(ProjRefRegex_LookBehind)$(ProjRefRegex_PATH)$(ProjRefRegex_LookAheadPrefix)</ReferencePathFromGuidPrefix>
+    <ReferencePathFromGuidSuffix>\}")</ReferencePathFromGuidSuffix>
+
+    <!--
+      The content of the solution file including this project.
+      Used to fetch the project path from.
+      -->
+    <SolutionContent>$([System.IO.File]::ReadAllText($(SolutionPath)))</SolutionContent>
+  </PropertyGroup>
+</Project>
