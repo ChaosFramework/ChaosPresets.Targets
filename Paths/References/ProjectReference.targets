@@ -9,7 +9,7 @@
     <ProjRefRegex_ProjectTypeGuid>FAE04EC0-301F-11D3-BF4B-00C04F79EFBC</ProjRefRegex_ProjectTypeGuid>
     <ProjRefRegex_LookBehindValue>Project\("{$(ProjRefRegex_ProjectTypeGuid)}"\)\s=\s"[a-zA-Z0-9\\.]+",\s"</ProjRefRegex_LookBehindValue>
     <ProjRefRegex_LookBehind>(?&lt;=$(ProjRefRegex_LookBehindValue))</ProjRefRegex_LookBehind>
-    <ProjRefRegex_PATH>[a-zA-Z0-9/\\\. -]+\.csproj</ProjRefRegex_PATH>
+    <ProjRefRegex_Path>[a-zA-Z0-9/\\\. -]+\.csproj</ProjRefRegex_Path>
     <ProjRefRegex_LookAheadPrefix>(?=",\s"\{</ProjRefRegex_LookAheadPrefix>
 
     <!--
@@ -18,7 +18,7 @@
       where PROJECT_GUID is the guid of the project to be imported in 8-4-4-4-12 notation
       with all upper case letters and without braces.
       -->
-    <ReferencePathFromGuidPrefix>$(ProjRefRegex_LookBehind)$(ProjRefRegex_PATH)$(ProjRefRegex_LookAheadPrefix)</ReferencePathFromGuidPrefix>
+    <ReferencePathFromGuidPrefix>$(ProjRefRegex_LookBehind)$(ProjRefRegex_Path)$(ProjRefRegex_LookAheadPrefix)</ReferencePathFromGuidPrefix>
     <ReferencePathFromGuidSuffix>\}")</ReferencePathFromGuidSuffix>
 
     <!--
