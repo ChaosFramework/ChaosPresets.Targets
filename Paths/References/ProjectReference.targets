@@ -6,25 +6,30 @@
       Helper properties to improve readability and maintainability.
       Do not use outside of this ProjectReference.targets file.
       -->
-    <ProjRefRegex_ProjectTypeGuid>FAE04EC0-301F-11D3-BF4B-00C04F79EFBC</ProjRefRegex_ProjectTypeGuid>
-    <ProjRefRegex_LookBehindValue>Project\("\{$(ProjRefRegex_ProjectTypeGuid)\}"\)\s=\s"[a-zA-Z0-9\.]+",\s"</ProjRefRegex_LookBehindValue>
-    <ProjRefRegex_LookBehind>(?&lt;=$(ProjRefRegex_LookBehindValue))</ProjRefRegex_LookBehind>
-    <ProjRefRegex_Path>[a-zA-Z0-9/\\\. -]+\.csproj</ProjRefRegex_Path>
-    <ProjRefRegex_LookAheadPrefix>(?=",\s"\{</ProjRefRegex_LookAheadPrefix>
+    <SubmoduleRefRegex_White>[ \t]</SubmoduleRefRegex_White>
+    <SubmoduleRefRegex_Url>[a-zA-Z0-9/\.-]+</SubmoduleRefRegex_Url>
+    <SubmoduleRefRegex_Path>[a-zA-Z0-9/\\\.-][a-zA-Z0-9/\\\. -]*</SubmoduleRefRegex_Path>
+    <SubmoduleRefRegex_Line1>\[submodule$(SubmoduleRefRegex_White)+"$(SubmoduleRefRegex_Path)"\]</SubmoduleRefRegex_Line1>
+    <SubmoduleRefRegex_Line2>$(SubmoduleRefRegex_White)*path$(SubmoduleRefRegex_White)*=$(SubmoduleRefRegex_White)*</SubmoduleRefRegex_Line2>
+    <SubmoduleRefRegex_LookBehindValue>$(SubmoduleRefRegex_Line1)\r?\n$(SubmoduleRefRegex_Line2)</SubmoduleRefRegex_LookBehindValue>
+
+    <SubmoduleRefRegex_Line3>$(SubmoduleRefRegex_White)*url$(SubmoduleRefRegex_White)*=$(SubmoduleRefRegex_White)*$(SubmoduleRefRegex_Url)/</SubmoduleRefRegex_Line3>
+
+    <SubmoduleRefRegex_LookAheadValue>\r?\n$(SubmoduleRefRegex_Line3)</SubmoduleRefRegex_LookAheadValue>
 
     <!--
-      The prefix and suffix for the regex to fetch the project path from the solution file.
-      Use like $(ReferencePathFromGuidPrefix)PROJECT_GUID$(ReferencePathFromGuidSuffix)
-      where PROJECT_GUID is the guid of the project to be imported in 8-4-4-4-12 notation
-      with all upper case letters and without braces.
+      The prefix and suffix for the regex to fetch the module path from the .gitmodules file.
+      Use like $(SubmoduleRefRegex_Prefix)REPOSITORY_NAME$(SubmoduleRefRegex_Suffix)
+      where REPOSITORY_NAME is the name (not the fully qualified nor relative url)
+      of the repository with optional .git suffix
       -->
-    <ReferencePathFromGuidPrefix>$(ProjRefRegex_LookBehind)$(ProjRefRegex_Path)$(ProjRefRegex_LookAheadPrefix)</ReferencePathFromGuidPrefix>
-    <ReferencePathFromGuidSuffix>\}")</ReferencePathFromGuidSuffix>
+    <SubmoduleRefRegex_Prefix>(?&lt;=$(SubmoduleRefRegex_LookBehindValue))$(SubmoduleRefRegex_Path)(?=$(SubmoduleRefRegex_LookAheadValue)</SubmoduleRefRegex_Prefix>
+    <SubmoduleRefRegex_Suffix>(.git)?\r?\n)</SubmoduleRefRegex_Suffix>
 
     <!--
-      The content of the solution file including this project.
-      Used to fetch the project path from.
+      The content of the .gitmodules file from the parent repository.
+      Used to fetch the path of individual submodules.
       -->
-    <SolutionContent>$([System.IO.File]::ReadAllText($(SolutionPath)))</SolutionContent>
+    <SubmoduleIndex>$([System.IO.File]::ReadAllText($(SolutionDir)\.gitmodules))</SubmoduleIndex>
   </PropertyGroup>
 </Project>
