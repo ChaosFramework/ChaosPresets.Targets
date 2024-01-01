@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+
+    <!--
+      Helper properties to improve readability and maintainability.
+      Do not use outside of this Submodule.targets file.
+      -->
+    <SubmoduleRefRegex_White>[ \t]</SubmoduleRefRegex_White>
+    <SubmoduleRefRegex_Url>[a-zA-Z0-9/\.-]+</SubmoduleRefRegex_Url>
+    <SubmoduleRefRegex_Path>[a-zA-Z0-9/\\\.-][a-zA-Z0-9/\\\. -]*</SubmoduleRefRegex_Path>
+    <SubmoduleRefRegex_Line1>\[submodule$(SubmoduleRefRegex_White)+"$(SubmoduleRefRegex_Path)"\]</SubmoduleRefRegex_Line1>
+    <SubmoduleRefRegex_Line2>$(SubmoduleRefRegex_White)*path$(SubmoduleRefRegex_White)*=$(SubmoduleRefRegex_White)*</SubmoduleRefRegex_Line2>
+    <SubmoduleRefRegex_LookBehindValue>$(SubmoduleRefRegex_Line1)\r?\n$(SubmoduleRefRegex_Line2)</SubmoduleRefRegex_LookBehindValue>
+
+    <SubmoduleRefRegex_Line3>$(SubmoduleRefRegex_White)*url$(SubmoduleRefRegex_White)*=$(SubmoduleRefRegex_White)*$(SubmoduleRefRegex_Url)/</SubmoduleRefRegex_Line3>
+
+    <SubmoduleRefRegex_LookAheadValue>\r?\n$(SubmoduleRefRegex_Line3)</SubmoduleRefRegex_LookAheadValue>
+
+    <!--
+      The prefix and suffix for the regex to fetch the module path from the .gitmodules file.
+      Use like $(SubmoduleRefRegex_Prefix)REPOSITORY_NAME$(SubmoduleRefRegex_Suffix)
+      where REPOSITORY_NAME is the name (not the fully qualified nor relative url)
+      of the repository with optional .git suffix
+      -->
+    <SubmoduleRefRegex_Prefix>(?&lt;=$(SubmoduleRefRegex_LookBehindValue))$(SubmoduleRefRegex_Path)(?=$(SubmoduleRefRegex_LookAheadValue)</SubmoduleRefRegex_Prefix>
+    <SubmoduleRefRegex_Suffix>(.git)?\r?\n)</SubmoduleRefRegex_Suffix>
+
+    <!--
+      The content of the .gitmodules file from the parent repository.
+      Used to fetch the path of individual submodules.
+      -->
+    <SubmoduleIndex>$([System.IO.File]::ReadAllText($(SolutionDir)\.gitmodules))</SubmoduleIndex>
+  </PropertyGroup>
+</Project>
