@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project>
+
+  <PropertyGroup>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
+    <CompilerGeneratedFilesOutputPath>./generated</CompilerGeneratedFilesOutputPath>
+  </PropertyGroup>
+
+  <Target
+    Name="RemoveEmptyCompilerGeneratedFilesOutputPath"
+    AfterTargets="PostBuildEvent"
+    Condition="Exists('$(CompilerGeneratedFilesOutputPath)')"
+    >
+    <ItemGroup>
+      <GeneratedFiles Include="$(CompilerGeneratedFilesOutputPath)/**/*.*" />
+      <NumGeneratedFiles Include="@(GeneratedFiles->Count())" />
+    </ItemGroup>
+    <Message
+      Importance="High"
+      Text="[$(AssemblyName)] Generated @(NumGeneratedFiles) files. Removing directory '$(CompilerGeneratedFilesOutputPath)'."
+      Condition="'@(NumGeneratedFiles)' == '0'"
+      />
+    <Message
+      Importance="High"
+      Text="[$(AssemblyName)] Generated @(NumGeneratedFiles) files. Keeping directory '$(CompilerGeneratedFilesOutputPath)'."
+      Condition="'@(NumGeneratedFiles)' != '0'"
+      />
+    <RemoveDir
+      Condition="'@(NumGeneratedFiles)' == '0'"
+      Directories="$(CompilerGeneratedFilesOutputPath)"
+      />
+  </Target>
+
+</Project>

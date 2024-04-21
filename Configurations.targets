@@ -20,6 +20,6 @@
   </PropertyGroup>
 
   <Target Name="PrintDefines" BeforeTargets="BeforeBuild">
-    <Message Importance="High" Text="Defines: $(DefineConstants)" />
+    <Message Importance="High" Text="[$(AssemblyName)] Defines: $(DefineConstants)" />
   </Target>
 </Project>
