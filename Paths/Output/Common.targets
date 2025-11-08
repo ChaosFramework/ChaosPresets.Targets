@@ -13,7 +13,7 @@
 
   <PropertyGroup>
     <AppendTargetFrameworkToOutputPath>true</AppendTargetFrameworkToOutputPath>
-    <AppendRuntimeIdentifierToOutputPath>true</AppendRuntimeIdentifierToOutputPath>
+    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
     <OutputPath>build/bin/$(RelativeOutputPath)</OutputPath>
     <BaseIntermediateOutputPath>build/obj/</BaseIntermediateOutputPath>
     <IntermediateOutputPath>$(BaseIntermediateOutputPath)$(RelativeOutputPath)</IntermediateOutputPath>
