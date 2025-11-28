@@ -12,8 +12,4 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
 
-  <Target Name="PrintProjectStyle" BeforeTargets="BeforeBuild">
-    <Message Importance="High" Text="[$(AssemblyName)] ProjectStyle: $(ProjectStyle)" />
-  </Target>
-
 </Project>

@@ -19,7 +19,7 @@
     <DebugSymbols>false</DebugSymbols>
   </PropertyGroup>
 
-  <Target Name="PrintDefines" BeforeTargets="BeforeBuild">
+  <Target Name="PrintDefines" BeforeTargets="Build">
     <Message Importance="High" Text="[$(AssemblyName)] Defines: $(DefineConstants)" />
   </Target>
 </Project>

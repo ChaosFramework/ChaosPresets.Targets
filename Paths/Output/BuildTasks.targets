@@ -3,11 +3,11 @@
   <Import Project="../FixVS.targets" />
 
   <PropertyGroup>
-    <RelativeOutputPath>$(Platform)/$(Configuration)/</RelativeOutputPath>
+    <RelativeOutputPath></RelativeOutputPath>
   </PropertyGroup>
 
   <PropertyGroup>
-    <AppendTargetFrameworkToOutputPath>true</AppendTargetFrameworkToOutputPath>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
     <OutputPath>build/bin/$(RelativeOutputPath)</OutputPath>
     <BaseIntermediateOutputPath>build/obj/</BaseIntermediateOutputPath>
