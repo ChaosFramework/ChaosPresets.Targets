@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project>
+  <Import Project="../FixVS.targets" />
+
+  <PropertyGroup>
+    <RelativeOutputPath></RelativeOutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+    <OutputPath>build/bin/$(RelativeOutputPath)</OutputPath>
+    <BaseIntermediateOutputPath>build/obj/</BaseIntermediateOutputPath>
+    <IntermediateOutputPath>$(BaseIntermediateOutputPath)$(RelativeOutputPath)</IntermediateOutputPath>
+  </PropertyGroup>
+</Project>
