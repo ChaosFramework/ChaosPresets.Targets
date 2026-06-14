@@ -2,6 +2,8 @@
 <Project>
   <Import Project="../FixVS.targets" />
 
+  <Import Project="../../Configurations.targets" />
+
   <PropertyGroup>
     <RelativeOutputPath>$(Platform)/$(Configuration)/</RelativeOutputPath>
   </PropertyGroup>
