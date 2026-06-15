@@ -9,9 +9,11 @@
 
   <PropertyGroup Condition="$([MSBuild]::IsOSPlatform('Windows'))">
     <DefineConstants>$(DefineConstants);OS_WINDOWS</DefineConstants>
+    <OS>Windows</OS>
   </PropertyGroup>
   <PropertyGroup Condition="$([MSBuild]::IsOSPlatform('Linux'))">
     <DefineConstants>$(DefineConstants);OS_LINUX</DefineConstants>
+    <OS>Linux</OS>
   </PropertyGroup>
 
   <Target
