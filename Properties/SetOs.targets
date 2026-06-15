@@ -1,0 +1,13 @@
+<Project>
+
+  <PropertyGroup Condition="$([MSBuild]::IsOSPlatform('Windows'))">
+    <OS>Windows</OS>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="$([MSBuild]::IsOSPlatform('Linux'))">
+    <OS>Linux</OS>
+  </PropertyGroup>
+
+  <!-- TODO: others -->
+
+</Project>

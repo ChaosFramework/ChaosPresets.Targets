@@ -1,5 +1,7 @@
 <Project>
 
+  <Import Project="./SetOs.targets" />
+
   <PropertyGroup Condition="$([MSBuild]::IsOSPlatform('Windows'))!='true'">
     <SkipCompilerExecution>true</SkipCompilerExecution>
     <SkipDefaultCompileItems>true</SkipDefaultCompileItems>
