@@ -1,0 +1,12 @@
+<Project>
+
+  <PropertyGroup Condition="$([MSBuild]::IsOSPlatform('Windows'))!='true'">
+    <SkipCompilerExecution>true</SkipCompilerExecution>
+    <SkipDefaultCompileItems>true</SkipDefaultCompileItems>
+    <TargetFrameworks>netstandard2.0</TargetFrameworks>
+    <PlatformNotSupported>true</PlatformNotSupported>
+  </PropertyGroup>
+
+  <Import Project="SkipUnsupportedPlatform.targets" />
+
+</Project>
