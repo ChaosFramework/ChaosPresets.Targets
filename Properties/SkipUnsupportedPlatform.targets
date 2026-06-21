@@ -1,0 +1,28 @@
+<Project>
+
+  <Target Name="SkipUnsupportedBuild" BeforeTargets="AssignTargetPaths" Condition="'$(PlatformNotSupported)'=='true'">
+    <PropertyGroup>
+      <!-- TODO: derive extension from project configuration -->
+      <FakeOutputAssembly>$(IntermediateOutputPath)$(AssemblyName).dll</FakeOutputAssembly>
+    </PropertyGroup>
+
+    <!--
+      even with disabled build, there is still an attempt to copy the target file
+      so just create an empty file the task can copy...
+      -->
+    <Message
+        Importance="High"
+        Text="Unsupported Target Platform. Skipping Build."
+        />
+    <Message
+        Importance="High"
+        Text="Creating fake $(FakeOutputAssembly)"
+        />
+
+    <WriteLinesToFile
+        File="$(FakeOutputAssembly)"
+        Lines=""
+        Overwrite="false" />
+  </Target>
+
+</Project>

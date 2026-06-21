@@ -1,10 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project>
 
+  <Import Project="./SetOs.targets" />
+
   <PropertyGroup>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
     <CompilerGeneratedFilesOutputPath>./generated</CompilerGeneratedFilesOutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="$([MSBuild]::IsOSPlatform('Windows'))">
+    <DefineConstants>$(DefineConstants);OS_WINDOWS</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="$([MSBuild]::IsOSPlatform('Linux'))">
+    <DefineConstants>$(DefineConstants);OS_LINUX</DefineConstants>
   </PropertyGroup>
 
   <Target
