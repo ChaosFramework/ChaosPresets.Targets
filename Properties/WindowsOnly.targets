@@ -2,7 +2,7 @@
 
   <Import Project="./SetOs.targets" />
 
-  <PropertyGroup Condition="$([MSBuild]::IsOSPlatform('Windows'))!='true'">
+  <PropertyGroup Condition="'$(OS)'!='Windows'">
     <SkipCompilerExecution>true</SkipCompilerExecution>
     <SkipDefaultCompileItems>true</SkipDefaultCompileItems>
     <TargetFrameworks>netstandard2.0</TargetFrameworks>
